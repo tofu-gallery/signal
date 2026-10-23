@@ -8,6 +8,7 @@ import { PianoRollEditor } from "../../features/piano-roll/components/PianoRollE
 import { SettingDialog } from "../../features/setting/components/SettingDialog"
 import { TempoEditor } from "../../features/tempo-editor/components/TempoEditor"
 import { TransportPanel } from "../../features/transport-panel/components/TransportPanel"
+import { cloudEnabled } from "../../firebase/firebase"
 import { useDisableBounceScroll } from "../../hooks/useDisableBounceScroll"
 import { useDisableBrowserContextMenu } from "../../hooks/useDisableBrowserContextMenu"
 import { useDisableZoom } from "../../hooks/useDisableZoom"
@@ -76,15 +77,15 @@ export const RootView: FC = () => {
       <HelpDialog />
       <ExportProgressDialog />
       <Head />
-      <SignInDialog />
-      <CloudFileDialog />
+      {cloudEnabled && <SignInDialog />}
+      {cloudEnabled && <CloudFileDialog />}
       <SettingDialog />
       <ControlSettingDialog />
       <OnInit />
       <OnBeforeUnload />
-      <PublishDialog />
-      <UserSettingsDialog />
-      <DeleteAccountDialog />
+      {cloudEnabled && <PublishDialog />}
+      {cloudEnabled && <UserSettingsDialog />}
+      {cloudEnabled && <DeleteAccountDialog />}
     </>
   )
 }

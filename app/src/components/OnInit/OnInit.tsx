@@ -5,6 +5,7 @@ import { songFromArrayBuffer } from "../../actions/file"
 import { useLoadSongFromExternalMidiFile } from "../../features/cloud-file/hooks/cloudSong"
 import { useMIDIDevice } from "../../features/midi-device/hooks/useMIDIDevice"
 import { useSoundFont } from "../../features/soundfont/hooks/useSoundFont"
+import { cloudEnabled } from "../../firebase/firebase"
 import { isRunningInElectron } from "../../helpers/platform"
 import { useAutoSave } from "../../hooks/useAutoSave"
 import { useStores } from "../../hooks/useStores"
@@ -45,7 +46,7 @@ export const OnInit: FC = () => {
     const params = new URLSearchParams(window.location.search)
     const openParam = params.get("open")
 
-    if (openParam) {
+    if (cloudEnabled && openParam) {
       const closeProgress = showProgress(localized["loading-external-midi"])
       try {
         const song = await loadSongFromExternalMidiFile(openParam)
@@ -83,7 +84,7 @@ export const OnInit: FC = () => {
     // Skip auto save restore if external file loading is present
     const params = new URLSearchParams(window.location.search)
     const openParam = params.get("open")
-    if (openParam) {
+    if (cloudEnabled && openParam) {
       return
     }
 

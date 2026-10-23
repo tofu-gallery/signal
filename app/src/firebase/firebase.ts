@@ -26,7 +26,15 @@ const firebaseConfig = definedOnly({
   appId: process.env["FIREBASE_APP_ID"],
 })
 
+// A standalone copy has no cloud account; keep the local editor available.
+export const cloudEnabled = Boolean(
+  firebaseConfig.apiKey && firebaseConfig.projectId,
+)
+
 const modules = (() => {
+  if (!cloudEnabled) {
+    return { app: null, auth: null, firestore: null, functions: null }
+  }
   try {
     const app = initializeApp(firebaseConfig)
     const auth = getAuth(app)

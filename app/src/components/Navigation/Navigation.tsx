@@ -9,6 +9,7 @@ import React, {
   type MouseEvent,
   useCallback,
 } from "react"
+import { cloudEnabled } from "../../firebase/firebase"
 import { getPlatform, isRunningInElectron } from "../../helpers/platform"
 import { useRootView } from "../../hooks/useRootView"
 import { useRouter } from "../../hooks/useRouter"
@@ -227,7 +228,7 @@ const _Navigation: FC = () => {
         </>
       )}
 
-      <UserButton />
+      {cloudEnabled && <UserButton />}
     </Container>
   )
 }

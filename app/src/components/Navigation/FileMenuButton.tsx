@@ -6,6 +6,7 @@ import KeyboardArrowDown from "mdi-react/KeyboardArrowDownIcon"
 import { type FC, useCallback, useState } from "react"
 import { hasFSAccess } from "../../actions/file"
 import { useExport } from "../../features/export/hooks/useExport"
+import { cloudEnabled } from "../../firebase/firebase"
 import { useAuth } from "../../hooks/useAuth"
 import { useRootView } from "../../hooks/useRootView"
 import { Localized } from "../../localize/useLocalization"
@@ -48,7 +49,7 @@ export const FileMenuButton: FC = () => {
 
       {user && <CloudFileMenu />}
 
-      {user === null && (
+      {cloudEnabled && user === null && (
         <>
           <MenuDivider />
           <MenuItem
