@@ -75,8 +75,7 @@ async function loadMetronomeSoundFontData() {
       "./assets/soundfonts/A320U_drums.sf2",
     )
   }
-  const soundFontURL =
-    "https://cdn.jsdelivr.net/gh/ryohey/signal@6959f35/public/A320U_drums.sf2"
+  const soundFontURL = "/soundfonts/A320U_drums.sf2"
   const response = await fetch(soundFontURL)
   const data = await response.arrayBuffer()
   return data

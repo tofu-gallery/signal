@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "A friendly music sequencer application for OS X and Windows.",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node generate-service-worker.mjs",
+    "dev": "vite --config vite.tofu.config.mts",
+    "build": "vite build --config vite.tofu.config.mts && node generate-service-worker.mjs",
     "build:electron": "vite build --config vite-electron.config.mts",
     "serve": "pnpm dlx http-server dist",
     "test": "vitest run",
